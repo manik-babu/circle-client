@@ -5,7 +5,7 @@ export async function proxy(request: NextRequest) {
 
     const session = await userService.getSession();
     if (session.data) {
-        console.log("Redirect...")
+        return NextResponse.redirect(new URL('/', request.url));
     }
     return NextResponse.next();
 }
