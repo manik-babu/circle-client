@@ -1,9 +1,11 @@
 import { cookies } from "next/headers"
 
+const SERVER_URL = process.env.SERVER_URL;
+
 const getSession = async () => {
     try {
         const cookieStore = await cookies();
-        const session = await fetch("http://localhost:8080/api/auth/get-session", {
+        const session = await fetch(`${SERVER_URL}/api/auth/get-session`, {
             headers: {
                 Cookie: cookieStore.toString()
             }
