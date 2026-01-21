@@ -7,7 +7,7 @@ export async function proxy(request: NextRequest) {
     const session = await userService.getSession();
 
     // Check user has the session or not
-    if (session.data) {
+    if (session.data && (path.startsWith('/login') || path.startsWith('/signup'))) {
         return NextResponse.redirect(new URL('/', request.url));
     }
 
