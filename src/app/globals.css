@@ -46,7 +46,7 @@
   --radius-4xl: calc(var(--radius) + 16px);
 
   /* My custome variables */
-  --shadow-theme: var(--theme);
+
 
 }
 
@@ -86,8 +86,7 @@
 
   /* My custom variables */
 
-  /* --theme-sdw-light: 0 1px 3px 2px #0000001a, 0 2px 2px -2px #0000001a; */
-  --theme: 0 1px 3px 2px #0000001a, 0 2px 2px -2px #0000001a;
+
 }
 
 .dark {
@@ -124,8 +123,7 @@
   --sidebar-ring: oklch(0.552 0.016 285.938);
 
   /* My custome variables  */
-  /* --theme-dark: 20px 1px 3px 2px #ffffff, 20px 2px 2px -2px #ffffff; */
-  --theme: 0px 1px 3px 2px #ffffff34, 0px 2px 2px -2px #ffffff34;
+
 }
 
 @layer base {
