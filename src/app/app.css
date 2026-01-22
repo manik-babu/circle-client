@@ -1,0 +1,28 @@
+.light-bg {
+    background-color: white;
+}
+
+#main-post-container {
+    border: 2px solid var(--border)
+}
+
+#post-status-box {
+    height: 44px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#post-status-box button {
+    cursor: pointer;
+    border-radius: 8px;
+    width: 124px;
+    line-height: 36px;
+    transition: all 0.3s ease;
+}
+
+#post-status-box button:hover {
+    background-color: #474747;
+
+}
