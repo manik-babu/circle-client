@@ -1,5 +1,5 @@
 .light-bg {
-    background-color: white;
+    background-color: var(--card);
 }
 
 #main-post-container {
