@@ -11,7 +11,7 @@ export default async function Home() {
     <div className="flex gap-2 min-h-screen justify-center bg-zinc-50 font-sans dark:bg-black">
       <div className="flex flex-col gap-4 mt-6">
         {posts.map((post: Post, index: number) => (
-          <div id="main-post-container" className="flex p-4 dark:bg-card bg-card rounded-md flex-col" key={index}>
+          <div id="main-post-container" className="flex p-4 dark:bg-card bg-card themering rounded-md flex-col" key={index}>
             <div id="post-header" className="flex gap-2">
               <div className="border-4 rounded-full h-12 w-12 flex justify-center items-center overflow-hidden">
                 <Image src='/a.jpg' alt="Profile" width={48} height={48} />

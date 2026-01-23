@@ -2,10 +2,6 @@
     background-color: var(--card);
 }
 
-#main-post-container {
-    /* border: 2px solid var(--border) */
-}
-
 #post-status-box {
     height: 44px;
     width: 100%;
