@@ -1,8 +1,7 @@
 import PostContainer from "@/components/modules/post/PostContainer";
 import { postService } from "@/services/post.service";
-import userService from "@/services/user.service";
+
 export default async function Home() {
-  const { data } = await userService.getSession();
   const { posts, error } = await postService.getPosts({ searchText: "" });
   console.log({ posts, error })
   return (

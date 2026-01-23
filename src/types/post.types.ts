@@ -10,5 +10,9 @@ export type Post = {
         id: string;
         name: string;
         image: string;
+    },
+    _count: {
+        likes: number;
+        comments: number;
     }
 }
