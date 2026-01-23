@@ -9,9 +9,8 @@ const getPosts = async ({ searchText }: { searchText?: string }) => {
         if (searchText) {
             url.searchParams.append("searchText", searchText);
         }
-        const result = await fetch(url).then(async (res) => {
-            return await res.json();
-        })
+        const res = await fetch(url, { cache: "no-store" });
+        const result = await res.json();
 
         if (!result.ok) {
             return {
@@ -26,6 +25,7 @@ const getPosts = async ({ searchText }: { searchText?: string }) => {
             }
         }
     } catch (error) {
+        console.log(error);
         return {
             posts: null,
             error: {
