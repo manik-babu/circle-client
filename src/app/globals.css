@@ -139,7 +139,7 @@
 
 @layer components {
   .themering {
-    @apply ring-1 ring-[#71717b46];
+    @apply ring-1 ring-[#9c9ca546];
 
     @variant dark {
       @apply ring-1 ring-[#9f9fa946]
