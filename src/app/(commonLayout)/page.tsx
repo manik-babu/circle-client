@@ -1,4 +1,4 @@
-import PostContainer from "@/components/modules/post/PostContainer";
+import PostContainer from "@/components/modules/home/PostContainer";
 import { postService } from "@/services/post.service";
 
 export default async function Home() {
