@@ -41,19 +41,23 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
     },
     onSubmit: async ({ value }) => {
       console.log(value);
-      const { data, error } = await authClient.signUp.email({
-        email: value.email,
-        password: value.password,
-        name: value.name
-      });
+      try {
+        const { data, error } = await authClient.signUp.email({
+          email: value.email,
+          password: value.password,
+          name: value.name
+        });
 
-      if (error) {
-        console.error("Signup error:", error);
-        if (error.message)
-          setformError(error.message);
-      }
-      else {
-        console.log("Signup success:", data);
+        if (error) {
+          console.error("Signup error:", error);
+          if (error.message)
+            setformError(error.message);
+        }
+        else {
+          console.log("Signup success:", data);
+        }
+      } catch (error) {
+        console.log(error)
       }
     }
 
@@ -66,7 +70,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
           Enter your information below to create your account
         </CardDescription>
         {formError && <CardDescription className="text-red-500">
-          User already exists. Use another email.
+          {formError}
         </CardDescription>}
       </CardHeader>
       <CardContent>
@@ -105,7 +109,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
                       id={field.name}
                       type="email"
                       placeholder="m@example.com"
-                      onChange={e => field.handleChange(e.target.value)}
+                      onChange={e => { field.handleChange(e.target.value); setformError(null); }}
                       value={field.state.value}
                       aria-invalid={isInvalid}
                     />

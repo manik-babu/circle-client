@@ -21,6 +21,7 @@ import Link from "next/link"
 import { authClient, signInWithGoogle } from "@/lib/auth-client"
 import { useForm } from "@tanstack/react-form"
 import z from "zod";
+import { useState } from "react"
 
 const formSchema = z.object({
   email: z.email(),
@@ -32,6 +33,7 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const [formError, setformError] = useState<string | null>(null)
   const form = useForm({
     defaultValues: {
       email: "",
@@ -42,11 +44,19 @@ export function LoginForm({
     },
     onSubmit: async ({ value }) => {
       console.log(value);
-      const { data, error } = await authClient.signIn.email(value);
-      if (!error) {
-        console.log(data)
-      }
-      else {
+      try {
+        const { data, error } = await authClient.signIn.email({
+          email: value.email,
+          password: value.password
+        });
+        if (error) {
+          console.log(error)
+          setformError(error?.message || null)
+        }
+        else {
+          console.log(data)
+        }
+      } catch (error) {
         console.log(error)
       }
     },
@@ -61,6 +71,9 @@ export function LoginForm({
           <CardDescription>
             Enter your email below to login to your account
           </CardDescription>
+          {formError && <CardDescription className="text-red-500">
+            {formError}
+          </CardDescription>}
         </CardHeader>
         <CardContent>
           <form onSubmit={e => { e.preventDefault(); form.handleSubmit(); }}>
@@ -76,7 +89,7 @@ export function LoginForm({
                         id={field.name}
                         type="email"
                         placeholder="m@example.com"
-                        onChange={e => field.handleChange(e.target.value)}
+                        onChange={e => { field.handleChange(e.target.value); setformError(null); }}
                         value={field.state.value}
                         aria-invalid={isInvalid}
                       />
@@ -104,7 +117,7 @@ export function LoginForm({
                       <Input
                         id={field.name}
                         type="password"
-                        onChange={e => field.handleChange(e.target.value)}
+                        onChange={e => { field.handleChange(e.target.value); setformError(null); }}
                         value={field.state.value}
                         aria-invalid={isInvalid}
                       />
@@ -114,8 +127,8 @@ export function LoginForm({
                 }}
               />
               <Field>
-                <Button type="submit">Login</Button>
-                <Button onClick={signInWithGoogle} variant="outline" type="button">
+                <Button type="submit" className="cursor-pointer">Login</Button>
+                <Button onClick={signInWithGoogle} variant="outline" type="button" className="cursor-pointer">
                   Login with Google
                 </Button>
                 <FieldDescription className="text-center">
